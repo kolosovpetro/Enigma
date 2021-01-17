@@ -20,7 +20,7 @@ namespace Enigma.Implementations
         public int GetEncryptedIndex(int index)
         {
             var currentIndex = _indices[index];
-            LeftRotate();
+            RightRotate();
             return currentIndex;
         }
 
@@ -38,23 +38,30 @@ namespace Enigma.Implementations
                 currentShift %= MaxShift;
             }
             
-            var skip = _indices.Skip(currentShift);
-            var take = _indices.Take(currentShift);
-            _indices = skip.Concat(take).ToArray();
-            RotorState += currentShift;
+            var left = _indices.Skip(currentShift);
+            var right = _indices.Take(currentShift);
+            _indices = left.Concat(right).ToArray();
+            RotorState -= currentShift;
         }
 
         public void RightRotate()
         {
-            LeftRotate(1);
+            RightRotate(1);
         }
 
         public void RightRotate(int shift)
         {
             var currentShift = shift;
-            var take = _indices.Take(currentShift);
-            var skip = _indices.Skip(currentShift);
-            _indices = take.Concat(skip).ToArray();
+            
+            if (currentShift > MaxShift)
+            {
+                currentShift %= MaxShift;
+            }
+            
+            var left = _indices.Take(_indices.Length - currentShift);
+            var right = _indices.Skip(_indices.Length - currentShift);
+            RotorState += currentShift;
+            _indices = right.Concat(left).ToArray();
         }
     }
 }
