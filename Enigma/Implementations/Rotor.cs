@@ -7,7 +7,7 @@ namespace Enigma.Implementations
     {
         private const int MaxShift = 26;
         
-        private static int[] _indices =
+        private int[] _indices =
         {
             20, 25, 8, 18, 15, 24, 1, 21, 12, 7, 23, 19, 11, 14, 2, 3,
             0, 10, 6, 4, 16, 9, 13, 22, 5, 17
@@ -15,7 +15,7 @@ namespace Enigma.Implementations
 
         public IRotor NextRotor { get; set; }
 
-        public int RotorState { get; }
+        public int RotorState { get; private set; }
 
         public int GetEncryptedIndex(int index)
         {
@@ -40,7 +40,8 @@ namespace Enigma.Implementations
             
             var skip = _indices.Skip(currentShift);
             var take = _indices.Take(currentShift);
-            _indices = take.Concat(skip).ToArray();
+            _indices = skip.Concat(take).ToArray();
+            RotorState += currentShift;
         }
 
         public void LeftRotate()
