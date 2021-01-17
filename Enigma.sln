@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enigma", "Enigma\Enigma.csproj", "{63F1B853-E5D6-44E8-8861-AD0DCD5E04FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enigma.Tests", "Enigma.Tests\Enigma.Tests.csproj", "{E1215DB2-D7F8-4D3B-9D7D-D0066E735D80}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{63F1B853-E5D6-44E8-8861-AD0DCD5E04FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63F1B853-E5D6-44E8-8861-AD0DCD5E04FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63F1B853-E5D6-44E8-8861-AD0DCD5E04FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63F1B853-E5D6-44E8-8861-AD0DCD5E04FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1215DB2-D7F8-4D3B-9D7D-D0066E735D80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1215DB2-D7F8-4D3B-9D7D-D0066E735D80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1215DB2-D7F8-4D3B-9D7D-D0066E735D80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1215DB2-D7F8-4D3B-9D7D-D0066E735D80}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
