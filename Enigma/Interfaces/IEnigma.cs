@@ -2,8 +2,8 @@
 {
     public interface IEnigma
     {
-        string EncryptMessage(string message);
-        string DecryptMessage(string message);
+        IEncryptedMessage EncryptMessage(string message);
+        string DecryptMessage(IEncryptedMessage message);
         void AddRotor(IRotor rotor);
     }
 }

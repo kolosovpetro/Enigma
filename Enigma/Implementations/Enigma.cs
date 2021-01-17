@@ -11,12 +11,12 @@ namespace Enigma.Implementations
             "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
         };
 
-        public string EncryptMessage(string message)
+        public string DecryptMessage(IEncryptedMessage message)
         {
             throw new System.NotImplementedException();
         }
 
-        public string DecryptMessage(string message)
+        public IEncryptedMessage EncryptMessage(string message)
         {
             throw new System.NotImplementedException();
         }
