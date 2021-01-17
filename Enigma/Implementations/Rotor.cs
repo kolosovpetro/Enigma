@@ -41,7 +41,7 @@ namespace Enigma.Implementations
             var left = _indices.Skip(currentShift);
             var right = _indices.Take(currentShift);
             _indices = left.Concat(right).ToArray();
-            RotorState -= currentShift;
+            RotorState -= shift;
         }
 
         public void RightRotate()
@@ -60,7 +60,7 @@ namespace Enigma.Implementations
             
             var left = _indices.Take(_indices.Length - currentShift);
             var right = _indices.Skip(_indices.Length - currentShift);
-            RotorState += currentShift;
+            RotorState += shift;
             _indices = right.Concat(left).ToArray();
         }
     }

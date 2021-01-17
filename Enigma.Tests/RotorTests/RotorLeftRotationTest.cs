@@ -36,7 +36,7 @@ namespace Enigma.Tests.RotorTests
             rotor.GetEncryptedIndex(0).Should().Be(23);
             rotor.GetEncryptedIndex(0).Should().Be(7);
             rotor.GetEncryptedIndex(0).Should().Be(12);
-            rotor.RotorState.Should().Be(-7);
+            rotor.RotorState.Should().Be(-33);
         }
     }
 }
