@@ -20,16 +20,16 @@ namespace Enigma.Implementations
         public int GetEncryptedIndex(int index)
         {
             var currentIndex = _indices[index];
-            RightRotate();
+            LeftRotate();
             return currentIndex;
         }
 
-        public void RightRotate()
+        public void LeftRotate()
         {
-            RightRotate(1);
+            LeftRotate(1);
         }
 
-        public void RightRotate(int shift)
+        public void LeftRotate(int shift)
         {
             var currentShift = shift;
             
@@ -44,14 +44,17 @@ namespace Enigma.Implementations
             RotorState += currentShift;
         }
 
-        public void LeftRotate()
+        public void RightRotate()
         {
-            throw new System.NotImplementedException();
+            LeftRotate(1);
         }
 
-        public void LeftRotate(int shift)
+        public void RightRotate(int shift)
         {
-            throw new System.NotImplementedException();
+            var currentShift = shift;
+            var take = _indices.Take(currentShift);
+            var skip = _indices.Skip(currentShift);
+            _indices = take.Concat(skip).ToArray();
         }
     }
 }

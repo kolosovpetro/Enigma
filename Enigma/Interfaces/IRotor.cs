@@ -21,21 +21,21 @@
         /// <summary>
         /// Rotates rotor to the right side by 1
         /// </summary>
-        void RightRotate();
+        void LeftRotate();
         
         /// <summary>
         /// Rotates rotor to the right side by value of shift variable
         /// </summary>
-        void RightRotate(int shift);
+        void LeftRotate(int shift);
         
         /// <summary>
         /// Rotates rotor to the left side by 1
         /// </summary>
-        void LeftRotate();
+        void RightRotate();
         
         /// <summary>
         /// Rotates rotor to the left side by shift value.
         /// </summary>
-        void LeftRotate(int shift);
+        void RightRotate(int shift);
     }
 }
