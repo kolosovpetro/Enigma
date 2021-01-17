@@ -2,7 +2,8 @@
 {
     public interface IEnigma
     {
-        void ReadKey(string key);
-        void PrintEncryptedKey();
+        string EncryptMessage(string message);
+        string DecryptMessage(string message);
+        void AddRotor(IRotor rotor);
     }
 }

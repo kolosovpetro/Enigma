@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enigma", "Enigma\Enigma.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enigma.Tests", "Enigma.Tests\Enigma.Tests.csproj", "{E1215DB2-D7F8-4D3B-9D7D-D0066E735D80}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enigma.UI", "Enigma.UI\Enigma.UI.csproj", "{196F5810-BC2B-4CE4-92CB-19FE1BFA7466}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{E1215DB2-D7F8-4D3B-9D7D-D0066E735D80}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1215DB2-D7F8-4D3B-9D7D-D0066E735D80}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1215DB2-D7F8-4D3B-9D7D-D0066E735D80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{196F5810-BC2B-4CE4-92CB-19FE1BFA7466}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{196F5810-BC2B-4CE4-92CB-19FE1BFA7466}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{196F5810-BC2B-4CE4-92CB-19FE1BFA7466}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{196F5810-BC2B-4CE4-92CB-19FE1BFA7466}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
