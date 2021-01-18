@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Enigma.Interfaces;
 
 namespace Enigma.Implementations
@@ -28,20 +29,14 @@ namespace Enigma.Implementations
                 currentRotor = currentRotor.NextRotor;
             }
 
-            if (rotorState > 0)
-            {
+            if (rotorState > 0) 
                 RightRotate(rotorState);
-            }
 
-            if (rotorState < 0)
-            {
+            if (rotorState < 0) 
                 LeftRotate(-rotorState);
-            }
         }
 
-        public Rotor()
-        {
-        }
+        public Rotor() { }
 
         public int GetEncryptedIndex(int index)
         {
@@ -61,6 +56,12 @@ namespace Enigma.Implementations
 
             RightRotate();
             return currentIndex;
+        }
+
+        public int GetDecryptedIndexAndRotate(int index)
+        {
+            LeftRotate();
+            return Array.IndexOf(_indices, index);
         }
 
         public void LeftRotate()

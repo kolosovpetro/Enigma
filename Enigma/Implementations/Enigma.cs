@@ -10,7 +10,7 @@ namespace Enigma.Implementations
             "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", 
             "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
         };
-
+        
         public string DecryptMessage(IEncryptedMessage message)
         {
             throw new System.NotImplementedException();
