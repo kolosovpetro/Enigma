@@ -35,7 +35,7 @@ namespace Enigma.Implementations
 
             if (rotorState < 0)
             {
-                LeftRotate(rotorState);
+                LeftRotate(-rotorState);
             }
         }
 
