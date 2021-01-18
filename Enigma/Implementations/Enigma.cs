@@ -24,6 +24,8 @@ namespace Enigma.Implementations
         public string DecryptMessage(IEncryptedMessage message)
         {
             var stack = new Stack<char>();
+            _rotor.Reset();
+            _rotor.SetRotorPosition(message.RotorsPosition);
             var text = message.Message;
             Builder.Clear();
             

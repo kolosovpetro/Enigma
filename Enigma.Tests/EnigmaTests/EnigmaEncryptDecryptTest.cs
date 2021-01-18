@@ -16,9 +16,6 @@ namespace Enigma.Tests.EnigmaTests
             var encryptedMessage = enigma.EncryptMessage("ABC");
             encryptedMessage.Message.Should().Be("UUU");
             encryptedMessage.RotorsPosition.Should().Be(3);
-            
-            rotor = new Rotor(encryptedMessage.RotorsPosition, 1);
-            enigma = new Implementations.Enigma(rotor);
             var decryptedMessage = enigma.DecryptMessage(encryptedMessage);
             decryptedMessage.Should().Be("ABC");
         }

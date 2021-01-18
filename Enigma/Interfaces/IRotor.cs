@@ -4,6 +4,7 @@
     {
         IRotor NextRotor { get; set; }
         int RotorState { get; set; }
+        public int[] Indices { get; set; }
         int GetEncryptedIndex(int index);
         int GetEncryptedIndexAndRotate(int index);
         int GetDecryptedIndexAndRotate(int index);
