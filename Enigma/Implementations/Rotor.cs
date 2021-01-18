@@ -6,7 +6,8 @@ namespace Enigma.Implementations
     public class Rotor : IRotor
     {
         private const int MaxShift = 26;
-        
+        private int _totalRotations;
+
         private int[] _indices =
         {
             20, 25, 8, 18, 15, 24, 1, 21, 12, 7, 23, 19, 11, 14, 2, 3,
@@ -32,16 +33,28 @@ namespace Enigma.Implementations
         public void LeftRotate(int shift)
         {
             var currentShift = shift;
-            
+
             if (shift > MaxShift)
             {
                 currentShift %= MaxShift;
             }
-            
+
             var left = _indices.Skip(currentShift);
             var right = _indices.Take(currentShift);
-            _indices = left.Concat(right).ToArray();
             RotorState -= shift;
+
+            if (NextRotor != null && RotorState / MaxShift < _totalRotations)
+            {
+                var tempTotalRotations = _totalRotations;
+                _totalRotations = RotorState / MaxShift;
+                
+                for (var i = _totalRotations; i < tempTotalRotations; i++)
+                {
+                    NextRotor.LeftRotate();
+                }
+            }
+            
+            _indices = left.Concat(right).ToArray();
         }
 
         public void RightRotate()
@@ -52,15 +65,27 @@ namespace Enigma.Implementations
         public void RightRotate(int shift)
         {
             var currentShift = shift;
-            
+
             if (currentShift > MaxShift)
             {
                 currentShift %= MaxShift;
             }
-            
+
             var left = _indices.Take(_indices.Length - currentShift);
             var right = _indices.Skip(_indices.Length - currentShift);
             RotorState += shift;
+            
+            if (NextRotor != null && RotorState / MaxShift > _totalRotations)
+            {
+                var tempTotalRotations = _totalRotations;
+                _totalRotations = RotorState / MaxShift;
+                
+                for (var i = tempTotalRotations; i < _totalRotations; i++)
+                {
+                    NextRotor.RightRotate();
+                }
+            }
+
             _indices = right.Concat(left).ToArray();
         }
     }
