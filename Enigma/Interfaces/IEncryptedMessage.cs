@@ -3,6 +3,6 @@
     public interface IEncryptedMessage
     {
         string Message { get; }
-        int[] RotorsPosition { get; }
+        int RotorsPosition { get; }
     }
 }
