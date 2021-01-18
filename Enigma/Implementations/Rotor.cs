@@ -17,7 +17,7 @@ namespace Enigma.Implementations
 
         public IRotor NextRotor { get; set; }
 
-        public int RotorState { get; private set; }
+        public int RotorState { get; set; }
 
         public Rotor(int rotorState, int rotorsNumber)
         {
@@ -29,14 +29,16 @@ namespace Enigma.Implementations
                 currentRotor = currentRotor.NextRotor;
             }
 
-            if (rotorState > 0) 
+            if (rotorState > 0)
                 RightRotate(rotorState);
 
-            if (rotorState < 0) 
+            if (rotorState < 0)
                 LeftRotate(-rotorState);
         }
 
-        public Rotor() { }
+        public Rotor()
+        {
+        }
 
         public int GetEncryptedIndex(int index)
         {
@@ -131,6 +133,16 @@ namespace Enigma.Implementations
             }
 
             _indices = right.Concat(left).ToArray();
+        }
+
+        public void Reset()
+        {
+            IRotor rotor = this;
+            while (rotor != null)
+            {
+                rotor.RotorState = 0;
+                rotor = rotor.NextRotor;
+            }
         }
     }
 }

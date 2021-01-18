@@ -3,7 +3,7 @@
     public interface IRotor
     {
         IRotor NextRotor { get; set; }
-        int RotorState { get; }
+        int RotorState { get; set; }
         int GetEncryptedIndex(int index);
         int GetEncryptedIndexAndRotate(int index);
         int GetDecryptedIndexAndRotate(int index);
@@ -12,5 +12,6 @@
         void LeftRotate(int shift);
         void RightRotate();
         void RightRotate(int shift);
+        void Reset();
     }
 }
