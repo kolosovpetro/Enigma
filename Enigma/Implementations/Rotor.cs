@@ -22,7 +22,7 @@ namespace Enigma.Implementations
         {
             IRotor currentRotor = this;
 
-            for (var i = 0; i < rotorsNumber; i++)
+            for (var i = 0; i < rotorsNumber - 1; i++)
             {
                 currentRotor.NextRotor = new Rotor();
                 currentRotor = currentRotor.NextRotor;
@@ -45,7 +45,20 @@ namespace Enigma.Implementations
 
         public int GetEncryptedIndex(int index)
         {
-            var currentIndex = _indices[index];
+            return _indices[index];
+        }
+
+        public int GetEncryptedIndexAndRotate(int index)
+        {
+            var currentIndex = GetEncryptedIndex(index);
+            var next = NextRotor;
+
+            while (next != null)
+            {
+                currentIndex = next.GetEncryptedIndex(currentIndex);
+                next = next.NextRotor;
+            }
+
             RightRotate();
             return currentIndex;
         }

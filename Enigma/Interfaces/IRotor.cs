@@ -11,12 +11,17 @@
         /// Shows how many times rotor was rotated to the right side
         /// </summary>
         int RotorState { get; }
+
+        /// <summary>
+        /// Returns encrypted index without rotation of the rotor.
+        /// </summary>
+        int GetEncryptedIndex(int index);
         
         /// <summary>
         /// Returns an encrypted index and rotates rotor.
         /// Same letter will give different indices.
         /// </summary>
-        int GetEncryptedIndex(int index);
+        int GetEncryptedIndexAndRotate(int index);
         
         /// <summary>
         /// Rotates rotor to the right side by 1

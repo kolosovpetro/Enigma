@@ -12,9 +12,9 @@ namespace Enigma.Tests.RotorTests
         public void Rotor_LeftRotation_Test()
         {
             IRotor rotor = new Rotor();
-            rotor.GetEncryptedIndex(0).Should().Be(20);
-            rotor.GetEncryptedIndex(0).Should().Be(17);
-            rotor.GetEncryptedIndex(0).Should().Be(5);
+            rotor.GetEncryptedIndexAndRotate(0).Should().Be(20);
+            rotor.GetEncryptedIndexAndRotate(0).Should().Be(17);
+            rotor.GetEncryptedIndexAndRotate(0).Should().Be(5);
             rotor.RotorState.Should().Be(3);
         }
 
@@ -23,8 +23,8 @@ namespace Enigma.Tests.RotorTests
         {
             IRotor rotor = new Rotor();
             rotor.LeftRotate(10);
-            rotor.GetEncryptedIndex(0).Should().Be(23);
-            rotor.GetEncryptedIndex(0).Should().Be(7);
+            rotor.GetEncryptedIndexAndRotate(0).Should().Be(23);
+            rotor.GetEncryptedIndexAndRotate(0).Should().Be(7);
             rotor.RotorState.Should().Be(-8);
         }
 
@@ -33,9 +33,9 @@ namespace Enigma.Tests.RotorTests
         {
             IRotor rotor = new Rotor();
             rotor.LeftRotate(36);
-            rotor.GetEncryptedIndex(0).Should().Be(23);
-            rotor.GetEncryptedIndex(0).Should().Be(7);
-            rotor.GetEncryptedIndex(0).Should().Be(12);
+            rotor.GetEncryptedIndexAndRotate(0).Should().Be(23);
+            rotor.GetEncryptedIndexAndRotate(0).Should().Be(7);
+            rotor.GetEncryptedIndexAndRotate(0).Should().Be(12);
             rotor.RotorState.Should().Be(-33);
         }
     }
