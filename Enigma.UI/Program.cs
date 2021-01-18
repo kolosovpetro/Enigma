@@ -1,5 +1,6 @@
 ﻿using System;
-using System.Linq;
+using Enigma.Implementations;
+using Enigma.Interfaces;
 
 namespace Enigma.UI
 {
@@ -7,11 +8,11 @@ namespace Enigma.UI
     {
         public static void Main()
         {
-            var list = Enumerable.Range(0, 26)
-                .OrderBy(x => new Random().Next())
-                .ToList();
-
-            list.ForEach(x => Console.Write(x + ", "));
+            IEnigma enigma = new Implementations.Enigma(new Rotor());
+            var encrypt = enigma.EncryptMessage("ENIGMA");
+            Console.WriteLine(encrypt.Message);
+            var decrypt = enigma.DecryptMessage(encrypt);
+            Console.WriteLine(decrypt);
         }
     }
 }

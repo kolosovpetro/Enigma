@@ -12,9 +12,5 @@ namespace Enigma.Implementations
             Message = message;
             RotorsPosition = rotorsPosition;
         }
-
-        public EncryptedMessage()
-        {
-        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Enigma.Interfaces;
 
@@ -26,7 +27,7 @@ namespace Enigma.Implementations
             var stack = new Stack<char>();
             _rotor.Reset();
             _rotor.SetRotorPosition(message.RotorsPosition);
-            var text = message.Message;
+            var text = message.Message.Reverse();
             Builder.Clear();
             
             foreach (var letter in text)
@@ -48,7 +49,6 @@ namespace Enigma.Implementations
         public IEncryptedMessage EncryptMessage(string message)
         {
             Builder.Clear();
-            
             foreach (var letter in message)
             {
                 var index = Alphabet.IndexOf(letter);

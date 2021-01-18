@@ -19,5 +19,16 @@ namespace Enigma.Tests.EnigmaTests
             var decryptedMessage = enigma.DecryptMessage(encryptedMessage);
             decryptedMessage.Should().Be("ABCD");
         }
+        
+        [Test]
+        public void Enigma_EncryptDecrypt_Test_2()
+        {
+            IRotor rotor = new Rotor();
+            IEnigma enigma = new Implementations.Enigma(rotor);
+            var encryptedMessage = enigma.EncryptMessage("E");
+            encryptedMessage.Message.Should().Be("P");
+            var encrypted = enigma.DecryptMessage(encryptedMessage);
+            encrypted.Should().Be("E");
+        }
     }
 }
