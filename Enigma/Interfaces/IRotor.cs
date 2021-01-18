@@ -13,5 +13,6 @@
         void RightRotate();
         void RightRotate(int shift);
         void Reset();
+        void SetRotorPosition(int value);
     }
 }

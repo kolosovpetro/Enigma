@@ -29,11 +29,7 @@ namespace Enigma.Implementations
                 currentRotor = currentRotor.NextRotor;
             }
 
-            if (rotorState > 0)
-                RightRotate(rotorState);
-
-            if (rotorState < 0)
-                LeftRotate(-rotorState);
+            SetRotorPosition(rotorState);
         }
 
         public Rotor()
@@ -143,6 +139,15 @@ namespace Enigma.Implementations
                 rotor.RotorState = 0;
                 rotor = rotor.NextRotor;
             }
+        }
+
+        public void SetRotorPosition(int value)
+        {
+            if (value > 0)
+                RightRotate(value);
+
+            if (value < 0)
+                LeftRotate(-value);
         }
     }
 }
