@@ -64,6 +64,11 @@ namespace Enigma.Implementations
             return Array.IndexOf(_indices, index);
         }
 
+        public int RotorIndexOf(int value)
+        {
+            return Array.IndexOf(_indices, value);
+        }
+
         public void LeftRotate()
         {
             LeftRotate(1);

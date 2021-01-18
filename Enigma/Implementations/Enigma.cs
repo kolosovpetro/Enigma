@@ -1,24 +1,60 @@
 ﻿using System.Collections.Generic;
+using System.Text;
 using Enigma.Interfaces;
 
 namespace Enigma.Implementations
 {
     public class Enigma : IEnigma
     {
-        private static List<string> Alphabet { get; } = new List<string>
+        private static List<char> Alphabet { get; } = new List<char>
         {
-            "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", 
-            "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
+            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
+            'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
         };
-        
+
+        private static readonly StringBuilder Builder = new StringBuilder();
+
+        private readonly IRotor _rotor;
+
+        public Enigma(IRotor rotor)
+        {
+            _rotor = rotor;
+        }
+
         public string DecryptMessage(IEncryptedMessage message)
         {
-            throw new System.NotImplementedException();
+            var stack = new Stack<char>();
+            var text = message.Message;
+            Builder.Clear();
+            
+            foreach (var letter in text)
+            {
+                var encryptedIndex = Alphabet.IndexOf(letter);
+                _rotor.LeftRotate();
+                var decryptedIndex = _rotor.RotorIndexOf(encryptedIndex);
+                stack.Push(Alphabet[decryptedIndex]);
+            }
+
+            while (stack.Count > 0)
+            {
+                Builder.Append(stack.Pop());
+            }
+
+            return Builder.ToString();
         }
 
         public IEncryptedMessage EncryptMessage(string message)
         {
-            throw new System.NotImplementedException();
+            Builder.Clear();
+            
+            foreach (var letter in message)
+            {
+                var index = Alphabet.IndexOf(letter);
+                var encryptedIndex = _rotor.GetEncryptedIndexAndRotate(index);
+                Builder.Append(Alphabet[encryptedIndex]);
+            }
+
+            return new EncryptedMessage(Builder.ToString(), _rotor.RotorState);
         }
     }
 }
