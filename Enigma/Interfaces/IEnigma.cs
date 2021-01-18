@@ -4,6 +4,5 @@
     {
         IEncryptedMessage EncryptMessage(string message);
         string DecryptMessage(IEncryptedMessage message);
-        void AddRotor(IRotor rotor);
     }
 }

@@ -20,10 +20,5 @@ namespace Enigma.Implementations
         {
             throw new System.NotImplementedException();
         }
-
-        public void AddRotor(IRotor rotor)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }
