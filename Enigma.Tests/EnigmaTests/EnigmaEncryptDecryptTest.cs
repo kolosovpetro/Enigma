@@ -13,11 +13,11 @@ namespace Enigma.Tests.EnigmaTests
         {
             IRotor rotor = new Rotor();
             IEnigma enigma = new Implementations.Enigma(rotor);
-            var encryptedMessage = enigma.EncryptMessage("ABC");
-            encryptedMessage.Message.Should().Be("UUU");
-            encryptedMessage.RotorsPosition.Should().Be(3);
+            var encryptedMessage = enigma.EncryptMessage("ABCD");
+            encryptedMessage.Message.Should().Be("UUUU");
+            encryptedMessage.RotorsPosition.Should().Be(4);
             var decryptedMessage = enigma.DecryptMessage(encryptedMessage);
-            decryptedMessage.Should().Be("ABC");
+            decryptedMessage.Should().Be("ABCD");
         }
     }
 }
