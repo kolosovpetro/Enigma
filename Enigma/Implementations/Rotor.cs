@@ -6,14 +6,24 @@ namespace Enigma.Implementations
 {
     public class Rotor : IRotor
     {
+        #region PrivateMembers
+
         private const int MaxShift = 26;
         private int _totalRotations;
 
+        #endregion
+
+        #region PublicProperties
+
         public int[] Indices { get; set; } = Helper.Indices.ToArray();
-
         public IRotor NextRotor { get; set; }
-
+        public IRotor PreviousRotor { get; set; }
+        public IRotorPosition RotorPosition { get; set; }
         public int RotorState { get; set; }
+
+        #endregion
+
+        #region Constructors
 
         public Rotor(int rotorState, int rotorsNumber)
         {
@@ -28,9 +38,18 @@ namespace Enigma.Implementations
             SetRotorPosition(rotorState);
         }
 
+        public Rotor(IRotorPosition rotorPosition)
+        {
+            RotorPosition = rotorPosition;
+        }
+
         public Rotor()
         {
         }
+
+        #endregion
+
+        #region EncryptDecrypt
 
         public int GetEncryptedIndex(int index)
         {
@@ -48,13 +67,13 @@ namespace Enigma.Implementations
                 next = next.NextRotor;
             }
 
-            RightRotate();
+            RightRotate(1);
             return currentIndex;
         }
 
         public int GetDecryptedIndexAndRotate(int index)
         {
-            LeftRotate();
+            LeftRotate(1);
             var currentIndex = RotorIndexOf(index);
             var next = NextRotor;
 
@@ -72,10 +91,9 @@ namespace Enigma.Implementations
             return Array.IndexOf(Indices, value);
         }
 
-        public void LeftRotate()
-        {
-            LeftRotate(1);
-        }
+        #endregion
+
+        #region Rotations
 
         public void LeftRotate(int shift)
         {
@@ -97,16 +115,11 @@ namespace Enigma.Implementations
 
                 for (var i = _totalRotations; i < tempTotalRotations; i++)
                 {
-                    NextRotor.LeftRotate();
+                    NextRotor.LeftRotate(1);
                 }
             }
 
             Indices = left.Concat(right).ToArray();
-        }
-
-        public void RightRotate()
-        {
-            RightRotate(1);
         }
 
         public void RightRotate(int shift)
@@ -129,12 +142,14 @@ namespace Enigma.Implementations
 
                 for (var i = tempTotalRotations; i < _totalRotations; i++)
                 {
-                    NextRotor.RightRotate();
+                    NextRotor.RightRotate(1);
                 }
             }
 
             Indices = right.Concat(left).ToArray();
         }
+
+        #endregion
 
         public void Reset()
         {
@@ -154,6 +169,11 @@ namespace Enigma.Implementations
 
             if (value < 0)
                 LeftRotate(-value);
+        }
+
+        public void SetRotorPosition(IRotorPosition position)
+        {
+            throw new NotImplementedException();
         }
     }
 }

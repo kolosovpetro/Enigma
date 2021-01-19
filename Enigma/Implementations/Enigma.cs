@@ -33,15 +33,13 @@ namespace Enigma.Implementations
             foreach (var letter in text)
             {
                 var encryptedIndex = Alphabet.IndexOf(letter);
-                _rotor.LeftRotate();
+                _rotor.LeftRotate(1);
                 var decryptedIndex = _rotor.RotorIndexOf(encryptedIndex);
                 stack.Push(Alphabet[decryptedIndex]);
             }
 
-            while (stack.Count > 0)
-            {
+            while (stack.Count > 0) 
                 Builder.Append(stack.Pop());
-            }
 
             return Builder.ToString();
         }

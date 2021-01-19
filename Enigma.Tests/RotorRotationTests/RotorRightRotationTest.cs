@@ -34,13 +34,13 @@ namespace Enigma.Tests.RotorRotationTests
         public void Rotor_RightRotation_Simple_Test_2()
         {
             IRotor rotor = new Rotor();
-            rotor.LeftRotate();
+            rotor.LeftRotate(1);
             rotor.GetEncryptedIndexAndRotate(0).Should().Be(25);
-            rotor.LeftRotate();
+            rotor.LeftRotate(1);
             rotor.GetEncryptedIndexAndRotate(0).Should().Be(25);
-            rotor.LeftRotate();
+            rotor.LeftRotate(1);
             rotor.GetEncryptedIndexAndRotate(0).Should().Be(25);
-            rotor.LeftRotate();
+            rotor.LeftRotate(1);
             rotor.GetEncryptedIndexAndRotate(0).Should().Be(25);
         }
     }
