@@ -1,5 +1,7 @@
 # Enigma machine
 
+Simulation of the enigma machine written in C#. Currently works only for single rotor case. And it is incredible work to do more. 
+
 ## Encryption pseudocode
 
 Input: Char T
