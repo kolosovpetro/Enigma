@@ -18,7 +18,6 @@ namespace Enigma.Implementations
         public int[] Indices { get; set; } = Helper.Indices.ToArray();
         public IRotor NextRotor { get; set; }
         public IRotor PreviousRotor { get; set; }
-        public IRotorPosition RotorPosition { get; set; }
         public int RotorState { get; set; }
 
         #endregion
@@ -38,9 +37,24 @@ namespace Enigma.Implementations
             SetRotorPosition(rotorState);
         }
 
+        public Rotor(int rotorsNumber)
+        {
+        }
+
         public Rotor(IRotorPosition rotorPosition)
         {
-            RotorPosition = rotorPosition;
+            IRotor current = this;
+
+            for (var i = 0; i < rotorPosition.RotorsCount; i++)
+            {
+                current.SetRotorPosition(rotorPosition.Positions[i]);
+
+                if (i == rotorPosition.RotorsCount - 1)
+                    break;
+
+                current.NextRotor = new Rotor {PreviousRotor = this};
+                current = current.NextRotor;
+            }
         }
 
         public Rotor()
@@ -172,6 +186,11 @@ namespace Enigma.Implementations
         }
 
         public void SetRotorPosition(IRotorPosition position)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IRotorPosition GetCurrentPosition()
         {
             throw new NotImplementedException();
         }

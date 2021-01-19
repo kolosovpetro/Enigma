@@ -4,7 +4,6 @@
     {
         IRotor NextRotor { get; set; }
         IRotor PreviousRotor { get; set; }
-        IRotorPosition RotorPosition { get; set; }
         int RotorState { get; set; }
         public int[] Indices { get; set; }
         int GetEncryptedIndex(int index);
@@ -16,5 +15,6 @@
         void Reset();
         void SetRotorPosition(int value);
         void SetRotorPosition(IRotorPosition position);
+        IRotorPosition GetCurrentPosition();
     }
 }

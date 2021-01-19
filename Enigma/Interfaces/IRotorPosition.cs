@@ -3,6 +3,6 @@
     public interface IRotorPosition
     {
         int RotorsCount { get; set; }
-        int[] RotorsPositions { get; set; }
+        int[] Positions { get; set; }
     }
 }
