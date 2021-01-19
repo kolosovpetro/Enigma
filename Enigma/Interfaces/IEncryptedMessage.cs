@@ -4,5 +4,6 @@
     {
         string Message { get; }
         int RotorsPosition { get; }
+        int[] RotorPositions { get; set; }
     }
 }

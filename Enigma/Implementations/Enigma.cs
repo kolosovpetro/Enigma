@@ -16,25 +16,30 @@ namespace Enigma.Implementations
         private static readonly StringBuilder Builder = new StringBuilder();
 
         private readonly IRotor _rotor;
+        
+        public IRotorSet RotorSet { get; }
 
         public Enigma(IRotor rotor)
         {
             _rotor = rotor;
         }
 
+        public Enigma(IRotorSet rotorSet)
+        {
+            RotorSet = rotorSet;
+        }
+
         public string DecryptMessage(IEncryptedMessage message)
         {
             var stack = new Stack<char>();
-            _rotor.Reset();
-            _rotor.SetRotorPosition(message.RotorsPosition);
+            RotorSet.SetPositions(message.RotorPositions);
             var text = message.Message.Reverse();
             Builder.Clear();
             
             foreach (var letter in text)
             {
                 var encryptedIndex = Alphabet.IndexOf(letter);
-                _rotor.LeftRotate(1);
-                var decryptedIndex = _rotor.GetDecryptedIndex(encryptedIndex);
+                var decryptedIndex = RotorSet.GetDecryptedIndexAndRotate(encryptedIndex);
                 stack.Push(Alphabet[decryptedIndex]);
             }
 
@@ -50,11 +55,11 @@ namespace Enigma.Implementations
             foreach (var letter in message)
             {
                 var index = Alphabet.IndexOf(letter);
-                var encryptedIndex = _rotor.GetEncryptedIndexAndRotate(index);
+                var encryptedIndex = RotorSet.GetEncryptedIndexAndRotate(index);
                 Builder.Append(Alphabet[encryptedIndex]);
             }
 
-            return new EncryptedMessage(Builder.ToString(), _rotor.Position);
+            return new EncryptedMessage(Builder.ToString(), RotorSet.GetPositions());
         }
     }
 }

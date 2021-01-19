@@ -8,8 +8,8 @@ namespace Enigma.UI
     {
         public static void Main()
         {
-            var rotor = new Rotor();
-            IEnigma enigma = new Implementations.Enigma(rotor);
+            var rotorSet = new RotorSet(new[] {3, 4, 5});
+            IEnigma enigma = new Implementations.Enigma(rotorSet);
             var encrypt = enigma.EncryptMessage("ENIGMA");
             Console.WriteLine(encrypt.Message);
             var decrypt = enigma.DecryptMessage(encrypt);
