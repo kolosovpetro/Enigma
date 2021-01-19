@@ -1,69 +1,24 @@
 ﻿using System;
 using System.Linq;
 using Enigma.Interfaces;
+using Enigma.Services;
 
 namespace Enigma.Implementations
 {
     public class Rotor : IRotor
     {
-        #region PrivateMembers
-
         private const int MaxShift = 26;
         private int _totalRotations;
-
-        #endregion
-
-        #region PublicProperties
-
         public int[] Indices { get; set; } = Helper.Indices.ToArray();
-        public IRotor NextRotor { get; set; }
-        public IRotor PreviousRotor { get; set; }
-        public int RotorState { get; set; }
-
-        #endregion
-
-        #region Constructors
-
-        public Rotor(int rotorState, int rotorsNumber)
-        {
-            IRotor currentRotor = this;
-
-            for (var i = 0; i < rotorsNumber - 1; i++)
-            {
-                currentRotor.NextRotor = new Rotor();
-                currentRotor = currentRotor.NextRotor;
-            }
-
-            SetRotorPosition(rotorState);
-        }
+        public int RotorPosition { get; set; }
 
         public Rotor(int rotorsNumber)
         {
         }
 
-        public Rotor(IRotorPosition rotorPosition)
-        {
-            IRotor current = this;
-
-            for (var i = 0; i < rotorPosition.RotorsCount; i++)
-            {
-                current.SetRotorPosition(rotorPosition.Positions[i]);
-
-                if (i == rotorPosition.RotorsCount - 1)
-                    break;
-
-                current.NextRotor = new Rotor {PreviousRotor = this};
-                current = current.NextRotor;
-            }
-        }
-
         public Rotor()
         {
         }
-
-        #endregion
-
-        #region EncryptDecrypt
 
         public int GetEncryptedIndex(int index)
         {
@@ -73,14 +28,6 @@ namespace Enigma.Implementations
         public int GetEncryptedIndexAndRotate(int index)
         {
             var currentIndex = GetEncryptedIndex(index);
-            var next = NextRotor;
-
-            while (next != null)
-            {
-                currentIndex = next.GetEncryptedIndex(currentIndex);
-                next = next.NextRotor;
-            }
-
             RightRotate(1);
             return currentIndex;
         }
@@ -89,14 +36,6 @@ namespace Enigma.Implementations
         {
             LeftRotate(1);
             var currentIndex = RotorIndexOf(index);
-            var next = NextRotor;
-
-            while (next != null)
-            {
-                currentIndex = next.RotorIndexOf(currentIndex);
-                next = next.NextRotor;
-            }
-
             return currentIndex;
         }
 
@@ -104,8 +43,6 @@ namespace Enigma.Implementations
         {
             return Array.IndexOf(Indices, value);
         }
-
-        #endregion
 
         #region Rotations
 
@@ -120,19 +57,7 @@ namespace Enigma.Implementations
 
             var left = Indices.Skip(currentShift);
             var right = Indices.Take(currentShift);
-            RotorState -= shift;
-
-            if (NextRotor != null && RotorState / MaxShift < _totalRotations)
-            {
-                var tempTotalRotations = _totalRotations;
-                _totalRotations = RotorState / MaxShift;
-
-                for (var i = _totalRotations; i < tempTotalRotations; i++)
-                {
-                    NextRotor.LeftRotate(1);
-                }
-            }
-
+            RotorPosition -= shift;
             Indices = left.Concat(right).ToArray();
         }
 
@@ -147,19 +72,7 @@ namespace Enigma.Implementations
 
             var left = Indices.Take(Indices.Length - currentShift);
             var right = Indices.Skip(Indices.Length - currentShift);
-            RotorState += shift;
-
-            if (NextRotor != null && RotorState / MaxShift > _totalRotations)
-            {
-                var tempTotalRotations = _totalRotations;
-                _totalRotations = RotorState / MaxShift;
-
-                for (var i = tempTotalRotations; i < _totalRotations; i++)
-                {
-                    NextRotor.RightRotate(1);
-                }
-            }
-
+            RotorPosition += shift;
             Indices = right.Concat(left).ToArray();
         }
 
@@ -167,13 +80,8 @@ namespace Enigma.Implementations
 
         public void Reset()
         {
-            IRotor rotor = this;
-            while (rotor != null)
-            {
-                rotor.RotorState = 0;
-                rotor.Indices = Helper.Indices.ToArray();
-                rotor = rotor.NextRotor;
-            }
+            RotorPosition = 0;
+            Indices = Helper.Indices.ToArray();
         }
 
         public void SetRotorPosition(int value)
@@ -183,16 +91,6 @@ namespace Enigma.Implementations
 
             if (value < 0)
                 LeftRotate(-value);
-        }
-
-        public void SetRotorPosition(IRotorPosition position)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IRotorPosition GetCurrentPosition()
-        {
-            throw new NotImplementedException();
         }
     }
 }

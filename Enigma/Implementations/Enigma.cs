@@ -54,7 +54,7 @@ namespace Enigma.Implementations
                 Builder.Append(Alphabet[encryptedIndex]);
             }
 
-            return new EncryptedMessage(Builder.ToString(), _rotor.RotorState);
+            return new EncryptedMessage(Builder.ToString(), _rotor.RotorPosition);
         }
     }
 }

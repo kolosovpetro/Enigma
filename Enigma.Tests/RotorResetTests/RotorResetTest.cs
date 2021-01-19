@@ -11,17 +11,14 @@ namespace Enigma.Tests.RotorResetTests
         [Test]
         public void Rotor_Reset_Test()
         {
-            IRotor rotor = new Rotor(0, 2);
+            IRotor rotor = new Rotor();
             rotor.RightRotate(26);
-            rotor.RotorState.Should().Be(26);
-            rotor.NextRotor.RotorState.Should().Be(1);
-            rotor.NextRotor.NextRotor.Should().BeNull();
-            rotor.GetEncryptedIndexAndRotate(0).Should().Be(4);
-            rotor.GetEncryptedIndexAndRotate(0).Should().Be(0);
-            rotor.GetEncryptedIndexAndRotate(0).Should().Be(15);
+            rotor.RotorPosition.Should().Be(26);
+            rotor.GetEncryptedIndexAndRotate(0).Should().Be(20);
+            rotor.GetEncryptedIndexAndRotate(0).Should().Be(17);
+            rotor.GetEncryptedIndexAndRotate(0).Should().Be(5);
             rotor.Reset();
-            rotor.RotorState.Should().Be(0);
-            rotor.NextRotor.RotorState.Should().Be(0);
+            rotor.RotorPosition.Should().Be(0);
         }
     }
 }

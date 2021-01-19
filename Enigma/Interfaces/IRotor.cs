@@ -2,9 +2,7 @@
 {
     public interface IRotor
     {
-        IRotor NextRotor { get; set; }
-        IRotor PreviousRotor { get; set; }
-        int RotorState { get; set; }
+        int RotorPosition { get; set; }
         public int[] Indices { get; set; }
         int GetEncryptedIndex(int index);
         int GetEncryptedIndexAndRotate(int index);
@@ -14,7 +12,5 @@
         void RightRotate(int shift);
         void Reset();
         void SetRotorPosition(int value);
-        void SetRotorPosition(IRotorPosition position);
-        IRotorPosition GetCurrentPosition();
     }
 }

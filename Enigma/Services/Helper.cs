@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Enigma.Implementations
+namespace Enigma.Services
 {
     public static class Helper
     {
