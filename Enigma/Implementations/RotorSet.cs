@@ -51,14 +51,28 @@ namespace Enigma.Implementations
             for (var i = 1; i < Rotors.Count; i++)
             {
                 var difference = Rotors[i - 1].TotalRotationsCount - Rotors[i].Position;
-                if (difference > 0) 
+                
+                if (difference > 0)
+                {
                     Rotors[i].RightRotate(difference);
+                }
             }
         }
 
         public void LeftRotate(int shift)
         {
-            throw new NotImplementedException();
+            var rotor = Rotors[0];
+            rotor.LeftRotate(shift);
+
+            for (var i = 1; i < Rotors.Count; i++)
+            {
+                var difference = Rotors[i - 1].TotalRotationsCount - Rotors[i].Position;
+                
+                if (difference < 0)
+                {
+                    Rotors[i].LeftRotate(-difference);
+                }
+            }
         }
     }
 }

@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace Enigma.Tests.RotorSetTests
 {
     [TestFixture]
-    public class RotorSetRotationsTest
+    public class RotorSetRightRotationsTest
     {
         [Test]
         public void RotorSet_DoubleRightRotation_Test()
