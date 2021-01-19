@@ -37,11 +37,11 @@ namespace Enigma.Implementations
         public int GetDecryptedIndexAndRotate(int index)
         {
             LeftRotate(1);
-            var currentIndex = RotorIndexOf(index);
+            var currentIndex = GetDecryptedIndex(index);
             return currentIndex;
         }
 
-        public int RotorIndexOf(int value)
+        public int GetDecryptedIndex(int value)
         {
             return Array.IndexOf(Indices, value);
         }

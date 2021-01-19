@@ -34,7 +34,7 @@ namespace Enigma.Implementations
             {
                 var encryptedIndex = Alphabet.IndexOf(letter);
                 _rotor.LeftRotate(1);
-                var decryptedIndex = _rotor.RotorIndexOf(encryptedIndex);
+                var decryptedIndex = _rotor.GetDecryptedIndex(encryptedIndex);
                 stack.Push(Alphabet[decryptedIndex]);
             }
 

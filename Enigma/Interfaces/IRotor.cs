@@ -8,7 +8,7 @@
         int GetEncryptedIndex(int index);
         int GetEncryptedIndexAndRotate(int index);
         int GetDecryptedIndexAndRotate(int index);
-        int RotorIndexOf(int value);
+        int GetDecryptedIndex(int value);
         void LeftRotate(int shift);
         void RightRotate(int shift);
         void Reset();

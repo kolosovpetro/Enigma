@@ -35,12 +35,31 @@ namespace Enigma.Implementations
 
         public int GetEncryptedIndexAndRotate(int index)
         {
-            throw new NotImplementedException();
+            var first = Rotors.First();
+            var encryptedIndex = first.GetEncryptedIndex(index);
+
+            for (var i = 1; i < Rotors.Count; i++)
+            {
+                encryptedIndex = Rotors[i].GetEncryptedIndex(encryptedIndex);
+            }
+
+            first.RightRotate(1);
+            return encryptedIndex;
         }
 
         public int GetDecryptedIndexAndRotate(int index)
         {
-            throw new NotImplementedException();
+            var first = Rotors.First();
+            first.LeftRotate(1);
+
+            var decryptedIndex = Rotors.Last().GetDecryptedIndex(index);
+
+            for (var i = Rotors.Count - 2; i >= 0; i--)
+            {
+                decryptedIndex = Rotors[i].GetDecryptedIndex(decryptedIndex);
+            }
+
+            return decryptedIndex;
         }
 
         public void RightRotate(int shift)
@@ -51,7 +70,7 @@ namespace Enigma.Implementations
             for (var i = 1; i < Rotors.Count; i++)
             {
                 var difference = Rotors[i - 1].TotalRotationsCount - Rotors[i].Position;
-                
+
                 if (difference > 0)
                 {
                     Rotors[i].RightRotate(difference);
@@ -67,7 +86,7 @@ namespace Enigma.Implementations
             for (var i = 1; i < Rotors.Count; i++)
             {
                 var difference = Rotors[i - 1].TotalRotationsCount - Rotors[i].Position;
-                
+
                 if (difference < 0)
                 {
                     Rotors[i].LeftRotate(-difference);
