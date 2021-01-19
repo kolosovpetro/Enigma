@@ -13,12 +13,12 @@ namespace Enigma.Tests.RotorResetTests
         {
             IRotor rotor = new Rotor();
             rotor.RightRotate(26);
-            rotor.RotorPosition.Should().Be(26);
+            rotor.Position.Should().Be(26);
             rotor.GetEncryptedIndexAndRotate(0).Should().Be(20);
             rotor.GetEncryptedIndexAndRotate(0).Should().Be(17);
             rotor.GetEncryptedIndexAndRotate(0).Should().Be(5);
             rotor.Reset();
-            rotor.RotorPosition.Should().Be(0);
+            rotor.Position.Should().Be(0);
         }
     }
 }

@@ -8,17 +8,19 @@ namespace Enigma.Implementations
     public class Rotor : IRotor
     {
         private const int MaxShift = 26;
-        private int _totalRotations;
         public int[] Indices { get; set; } = Helper.Indices.ToArray();
-        public int RotorPosition { get; set; }
+        public int Position { get; set; }
+        public int TotalRotationsCount { get; set; }
 
-        public Rotor(int rotorsNumber)
+        public Rotor(int rotorPosition)
         {
+            SetRotorPosition(rotorPosition);
         }
 
         public Rotor()
         {
         }
+
 
         public int GetEncryptedIndex(int index)
         {
@@ -44,8 +46,6 @@ namespace Enigma.Implementations
             return Array.IndexOf(Indices, value);
         }
 
-        #region Rotations
-
         public void LeftRotate(int shift)
         {
             var currentShift = shift;
@@ -57,7 +57,13 @@ namespace Enigma.Implementations
 
             var left = Indices.Skip(currentShift);
             var right = Indices.Take(currentShift);
-            RotorPosition -= shift;
+            Position -= shift;
+
+            if (Position / 26 < TotalRotationsCount)
+            {
+                TotalRotationsCount = Position / MaxShift;
+            }
+            
             Indices = left.Concat(right).ToArray();
         }
 
@@ -72,15 +78,19 @@ namespace Enigma.Implementations
 
             var left = Indices.Take(Indices.Length - currentShift);
             var right = Indices.Skip(Indices.Length - currentShift);
-            RotorPosition += shift;
+            Position += shift;
+            
+            if (Position / 26 > TotalRotationsCount)
+            {
+                TotalRotationsCount = Position / MaxShift;
+            }
+
             Indices = right.Concat(left).ToArray();
         }
 
-        #endregion
-
         public void Reset()
         {
-            RotorPosition = 0;
+            Position = 0;
             Indices = Helper.Indices.ToArray();
         }
 

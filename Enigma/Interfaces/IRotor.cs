@@ -2,8 +2,9 @@
 {
     public interface IRotor
     {
-        int RotorPosition { get; set; }
+        int Position { get; set; }
         public int[] Indices { get; set; }
+        int TotalRotationsCount { get; set; }
         int GetEncryptedIndex(int index);
         int GetEncryptedIndexAndRotate(int index);
         int GetDecryptedIndexAndRotate(int index);
