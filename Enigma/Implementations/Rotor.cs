@@ -55,7 +55,16 @@ namespace Enigma.Implementations
         public int GetDecryptedIndexAndRotate(int index)
         {
             LeftRotate();
-            return Array.IndexOf(Indices, index);
+            var currentIndex = RotorIndexOf(index);
+            var next = NextRotor;
+
+            while (next != null)
+            {
+                currentIndex = next.RotorIndexOf(currentIndex);
+                next = next.NextRotor;
+            }
+
+            return currentIndex;
         }
 
         public int RotorIndexOf(int value)

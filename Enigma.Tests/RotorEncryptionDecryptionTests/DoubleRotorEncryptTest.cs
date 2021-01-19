@@ -3,10 +3,10 @@ using Enigma.Interfaces;
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace Enigma.Tests.RotorTests
+namespace Enigma.Tests.RotorEncryptionDecryptionTests
 {
     [TestFixture]
-    public class DoubleRotorEncryptionTest
+    public class DoubleRotorEncryptTest
     {
         [Test]
         public void Double_Rotor_Encrypt_Test()

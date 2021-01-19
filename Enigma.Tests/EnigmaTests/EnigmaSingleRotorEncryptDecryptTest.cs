@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace Enigma.Tests.EnigmaTests
 {
     [TestFixture]
-    public class EnigmaEncryptDecryptTest
+    public class EnigmaSingleRotorEncryptDecryptTest
     {
         [Test]
         public void Enigma_EncryptDecrypt_Test()
@@ -29,6 +29,17 @@ namespace Enigma.Tests.EnigmaTests
             encryptedMessage.Message.Should().Be("P");
             var encrypted = enigma.DecryptMessage(encryptedMessage);
             encrypted.Should().Be("E");
+        }
+        
+        [Test]
+        public void Enigma_EncryptDecrypt_Test_3()
+        {
+            IRotor rotor = new Rotor(0, 2);
+            IEnigma enigma = new Implementations.Enigma(rotor);
+            var encryptedMessage = enigma.EncryptMessage("ENIGMA");
+            //encryptedMessage.Message.Should().Be("E");
+            var encrypted = enigma.DecryptMessage(encryptedMessage);
+            encrypted.Should().Be("ENIGMA");
         }
     }
 }

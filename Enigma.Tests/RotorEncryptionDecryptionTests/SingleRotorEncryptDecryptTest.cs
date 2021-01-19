@@ -3,13 +3,13 @@ using Enigma.Interfaces;
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace Enigma.Tests.RotorTests
+namespace Enigma.Tests.RotorEncryptionDecryptionTests
 {
     [TestFixture]
-    public class RotorEncryptionDecryptionTest
+    public class SingleRotorEncryptDecryptTest
     {
         [Test]
-        public void Rotor_Encrypt_Decrypt_Test()
+        public void SingleRotor_EncryptDecrypt_Test_1()
         {
             IRotor rotor = new Rotor();
             var index1 = rotor.GetEncryptedIndexAndRotate(0);
@@ -21,9 +21,9 @@ namespace Enigma.Tests.RotorTests
             decrypt1.Should().Be(0);
             decrypt2.Should().Be(0);
         }
-        
+
         [Test]
-        public void Rotor_Encrypt_Decrypt_Test_2()
+        public void SingleRotor_EncryptDecrypt_Test_2()
         {
             IRotor rotor = new Rotor();
             var index1 = rotor.GetEncryptedIndexAndRotate(0);

@@ -3,7 +3,7 @@ using Enigma.Interfaces;
 using FluentAssertions;
 using NUnit.Framework;
 
-namespace Enigma.Tests.RotorTests
+namespace Enigma.Tests.RotorResetTests
 {
     [TestFixture]
     public class RotorResetTest
