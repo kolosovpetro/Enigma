@@ -1,6 +1,6 @@
 # Enigma machine
 
-When I was a child I remember a how I was impressed by movie Enigma(2001). That long time ago it was literally magic for me to understand how enigma machine works.
+When I was a child I remember how I was impressed by movie Enigma (2001). That long time ago it was literally magic for me to understand how enigma machine works.
 
 Now I can write my own enigma. That's amazing!
 
