@@ -64,7 +64,7 @@ namespace Enigma.Implementations
 
         public void RightRotate(int shift)
         {
-            var rotor = Rotors[0];
+            var rotor = Rotors.First();
             rotor.RightRotate(shift);
 
             for (var i = 1; i < Rotors.Count; i++)
@@ -80,7 +80,7 @@ namespace Enigma.Implementations
 
         public void LeftRotate(int shift)
         {
-            var rotor = Rotors[0];
+            var rotor = Rotors.First();
             rotor.LeftRotate(shift);
 
             for (var i = 1; i < Rotors.Count; i++)
