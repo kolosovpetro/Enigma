@@ -1,6 +1,25 @@
 # Enigma machine
 
-Simulation of the enigma machine written in C#. Currently works only for single rotor case. And it is incredible work to do more. 
+When I was a child I remember a how I was impressed by movie Enigma(2001). That long time ago it was literally magic for me to understand how enigma machine works.
+
+Now I can write my own enigma. That's amazing!
+
+## Code snippet
+
+```cs
+var rotorSet = new RotorSet(new[] {3, 4, 5});
+var enigma = new Implementations.Enigma(rotorSet);
+            
+var encrypt = enigma.EncryptMessage("ENIGMA WAS USED IN SECOND WORLD WAR");
+Console.WriteLine(encrypt.Message);    // POWJTS GMY VTMU SI JFVDNK QLNRP DIA
+            
+var decrypt = enigma.DecryptMessage(encrypt);
+Console.WriteLine(decrypt);            // ENIGMA WAS USED IN SECOND WORLD WAR
+```
+
+## Me near enigma monument
+
+![DbSchema](me.jpg?raw=true)
 
 ## Encryption pseudocode
 
