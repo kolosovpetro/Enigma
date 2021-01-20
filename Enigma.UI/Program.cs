@@ -11,7 +11,7 @@ namespace Enigma.UI
             var enigma = new Implementations.Enigma(rotorSet);
             
             var encrypt = enigma.EncryptMessage("ENIGMA WAS USED IN SECOND WORLD WAR");
-            Console.WriteLine(encrypt.Message);    // POWJTS GMY VTMU SI JFVDNK QLNRP DIA
+            Console.WriteLine(encrypt.Message);    // POFNTDWAKUGUFJGVKBTZVTKLFHBRGUQDLSY
             
             var decrypt = enigma.DecryptMessage(encrypt);
             Console.WriteLine(decrypt);            // ENIGMA WAS USED IN SECOND WORLD WAR

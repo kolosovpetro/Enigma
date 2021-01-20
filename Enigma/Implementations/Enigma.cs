@@ -26,7 +26,7 @@ namespace Enigma.Implementations
         {
             var stack = new Stack<char>();
             RotorSet.SetPositions(message.RotorPositions);
-            var text = message.Message.Reverse();
+            var text = message.Message.ToUpper().Reverse();
             Builder.Clear();
             
             foreach (var letter in text)
@@ -45,6 +45,8 @@ namespace Enigma.Implementations
         public IEncryptedMessage EncryptMessage(string message)
         {
             Builder.Clear();
+            message = message.ToUpper();
+            
             foreach (var letter in message)
             {
                 var index = Alphabet.IndexOf(letter);
