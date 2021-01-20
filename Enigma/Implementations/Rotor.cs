@@ -7,7 +7,7 @@ namespace Enigma.Implementations
 {
     public class Rotor : IRotor
     {
-        private const int MaxShift = 26;
+        private const int MaxShift = 27;
         public int[] Indices { get; set; } = Helper.Indices.ToArray();
         public int Position { get; set; }
         public int TotalRotationsCount { get; set; }
@@ -80,7 +80,7 @@ namespace Enigma.Implementations
             var right = Indices.Skip(Indices.Length - currentShift);
             Position += shift;
             
-            if (Position / 26 > TotalRotationsCount)
+            if (Position / MaxShift > TotalRotationsCount)
             {
                 TotalRotationsCount = Position / MaxShift;
             }

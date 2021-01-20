@@ -10,7 +10,7 @@ namespace Enigma.Implementations
         private static List<char> Alphabet { get; } = new List<char>
         {
             'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
-            'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+            'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', ' '
         };
 
         private static readonly StringBuilder Builder = new StringBuilder();
@@ -31,12 +31,6 @@ namespace Enigma.Implementations
             
             foreach (var letter in text)
             {
-                if (char.IsWhiteSpace(letter))
-                {
-                    stack.Push(letter);
-                    continue;
-                }
-                
                 var encryptedIndex = Alphabet.IndexOf(letter);
                 var decryptedIndex = RotorSet.GetDecryptedIndexAndRotate(encryptedIndex);
                 stack.Push(Alphabet[decryptedIndex]);
@@ -53,12 +47,6 @@ namespace Enigma.Implementations
             Builder.Clear();
             foreach (var letter in message)
             {
-                if (char.IsWhiteSpace(letter))
-                {
-                    Builder.Append(letter);
-                    continue;
-                }
-                
                 var index = Alphabet.IndexOf(letter);
                 var encryptedIndex = RotorSet.GetEncryptedIndexAndRotate(index);
                 Builder.Append(Alphabet[encryptedIndex]);

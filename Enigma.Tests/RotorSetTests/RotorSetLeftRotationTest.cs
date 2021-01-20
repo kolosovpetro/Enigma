@@ -31,8 +31,8 @@ namespace Enigma.Tests.RotorSetTests
             var rotorSet = new RotorSet(3);
             rotorSet.LeftRotate(677);
             rotorSet.Rotors[0].Position.Should().Be(-677);
-            rotorSet.Rotors[1].Position.Should().Be(-26);
-            rotorSet.Rotors[2].Position.Should().Be(-1);
+            rotorSet.Rotors[1].Position.Should().Be(-25);
+            rotorSet.Rotors[2].Position.Should().Be(0);
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Enigma.Tests.RotorEncryptionDecryptionTests
             var index1 = rotor.GetEncryptedIndexAndRotate(0);
             var index2 = rotor.GetEncryptedIndexAndRotate(0);
             index1.Should().Be(20);
-            index2.Should().Be(17);
+            index2.Should().Be(26);
             var decrypt1 = rotor.GetDecryptedIndexAndRotate(index2);
             var decrypt2 = rotor.GetDecryptedIndexAndRotate(index1);
             decrypt1.Should().Be(0);

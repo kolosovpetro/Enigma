@@ -14,9 +14,9 @@ namespace Enigma.Tests.RotorResetTests
             IRotor rotor = new Rotor();
             rotor.RightRotate(26);
             rotor.Position.Should().Be(26);
+            rotor.GetEncryptedIndexAndRotate(0).Should().Be(25);
             rotor.GetEncryptedIndexAndRotate(0).Should().Be(20);
-            rotor.GetEncryptedIndexAndRotate(0).Should().Be(17);
-            rotor.GetEncryptedIndexAndRotate(0).Should().Be(5);
+            rotor.GetEncryptedIndexAndRotate(0).Should().Be(26);
             rotor.Reset();
             rotor.Position.Should().Be(0);
         }
